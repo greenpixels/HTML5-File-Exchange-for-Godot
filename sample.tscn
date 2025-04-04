@@ -1,35 +1,39 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://br61t04j4g6lw"]
 
-[ext_resource path="res://Sample.gd" type="Script" id=1]
+[ext_resource type="Script" uid="uid://bkanedi4v2grg" path="res://sample.gd" id="1"]
+[ext_resource type="Script" uid="uid://dsgjtbr1s4mdk" path="res://addons/HTML5FileExchange/HTML5FileExchange.gd" id="2_yimkj"]
 
 [node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_right = 136.0
-margin_bottom = 20.0
+layout_mode = 2
 
 [node name="UploadButton" type="Button" parent="VBoxContainer/HBoxContainer"]
-margin_right = 57.0
-margin_bottom = 20.0
+layout_mode = 2
 text = "Upload"
 
 [node name="DownloadButton" type="Button" parent="VBoxContainer/HBoxContainer"]
-margin_left = 61.0
-margin_right = 136.0
-margin_bottom = 20.0
+layout_mode = 2
 text = "Download"
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
-margin_top = 24.0
-margin_right = 136.0
-margin_bottom = 24.0
-script = ExtResource( 1 )
+unique_name_in_owner = true
+layout_mode = 2
 
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/UploadButton" to="VBoxContainer/TextureRect" method="_on_UploadButton_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/DownloadButton" to="VBoxContainer/TextureRect" method="_on_DownloadButton_pressed"]
+[node name="Exchange" type="Node" parent="."]
+script = ExtResource("2_yimkj")
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/UploadButton" to="." method="_on_upload_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/DownloadButton" to="." method="_on_download_button_pressed"]
